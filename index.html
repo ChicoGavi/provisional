@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Calculadoras | Santiago Gaviria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #25d366; /* WhatsApp Green */
+            --dark-color: #1a1a1a;
+            --light-bg: #f4f4f9;
+            --text-gray: #555;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: var(--dark-color);
+        }
+
+        header {
+            background-color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-weight: 600; color: var(--dark-color); }
+        header p { margin: 0.5rem 0 0; color: var(--text-gray); }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Grid de Productos */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Card de Calculadora */
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin: 0 0 0.5rem;
+            font-weight: 600;
+        }
+
+        .card-price {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .buy-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            gap: 10px;
+        }
+
+        .buy-btn:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .badge-santiago {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Catálogo de Calculadoras</h1>
+        <p>Precisión y tecnología en tus manos</p>
+    </header>
+
+    <div class="container">
+        <div class="catalog-grid" id="catalog">
+            </div>
+    </div>
+
+    <footer>
+        <p>Hecho por <span class="badge-santiago">Santiago Gaviria</span> &copy; 2024</p>
+    </footer>
+
+    <script>
+        // CONFIGURACIÓN DE PRODUCTOS
+        // Aquí es donde debes poner tus links de imágenes y datos
+        const productos = [
+            {
+                titulo: "Calculadora Cientifica Kadio",
+                precio: "$10.000",
+                descripcion: " 350ms 240 Funciones / 2 Líneas Color Negro",
+                imagen: "https://http2.mlstatic.com/D_NQ_NP_2X_714585-MLA100085133135_122025-F.webp", // PEGA TU LINK AQUÍ
+                whatsapp: "573145090333" // Tu número sin el +
+            },
+            {
+                titulo: "Calculadora Financiera Plus",
+                precio: "$45.00",
+                descripcion: "Perfecta para negocios, cálculo de intereses y flujos de caja rápidos.",
+                imagen: "https://via.placeholder.com/400x300?text=Imagen+Calculadora+2", // PEGA TU LINK AQUÍ
+                whatsapp: "573145090333"
+            },
+            {
+                titulo: "Calculadora de Escritorio Solar",
+                precio: "$15.00",
+                descripcion: "Diseño ergonómico con botones grandes y alimentación dual (Solar/Batería).",
+                imagen: "https://via.placeholder.com/400x300?text=Imagen+Calculadora+3", // PEGA TU LINK AQUÍ
+                whatsapp: "573145090333"
+            }
+        ];
+
+        const catalogContainer = document.getElementById('catalog');
+
+        productos.forEach(prod => {
+            const mensajeWa = encodeURIComponent(`Hola Santiago, quiero esta calculadora: ${prod.titulo}`);
+            const card = `
+                <div class="card">
+                    <div class="image-placeholder" style="background-image: url('${prod.imagen}')"></div>
+                    <div class="card-content">
+                        <h2 class="card-title">${prod.titulo}</h2>
+                        <div class="card-price">${prod.precio}</div>
+                        <p class="card-description">${prod.descripcion}</p>
+                        <a href="https://wa.me/${prod.whatsapp}?text=${mensajeWa}" class="buy-btn" target="_blank">
+                            Comprar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            `;
+            catalogContainer.innerHTML += card;
+        });
+    </script>
+</body>
+</html>
